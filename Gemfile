@@ -2,6 +2,8 @@ source "http://rubygems.org"
 
 gemspec
 
-gem "guard"
-gem "rails-controller-testing"
 gem "capybara"
+gem "guard"
+gem "sqlite3"
+gem "rails-controller-testing"
+gem "pry"
