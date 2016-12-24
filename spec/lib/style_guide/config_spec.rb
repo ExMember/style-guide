@@ -31,8 +31,7 @@ describe StyleGuide::Config do
 
   describe "#sections" do
     context "when no paths have been added" do
-      it { subject.sections.size.should be >= 1 }
-      specify { subject.sections.first.should be_a StyleGuide::Section }
+      it { subject.sections.size.should eq 0 }
     end
 
     context "when adding a nonexistent path" do
