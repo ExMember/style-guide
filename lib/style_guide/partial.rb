@@ -15,7 +15,7 @@ module StyleGuide
     end
 
     def title
-      @title ||= File.basename(path, File.extname(path)).titleize.strip
+      @title ||= base_file_name.titleize.strip
     end
 
     def description
@@ -43,13 +43,17 @@ module StyleGuide
     end
 
     def render
-      @render ||= action_view.render(:file => path)
+      @render ||= ::ApplicationController.renderer.render(partial: partial_name)
     end
 
     private
 
-    def action_view
-      ActionView::Base.new(Rails.root.join("app", "views"))
+    def partial_name
+      "style-guide/#{section.id}/#{base_file_name[1..-1]}"
+    end
+
+    def base_file_name
+       File.basename(path, File.extname(path))
     end
 
     def style_guide_scope

@@ -8,7 +8,13 @@ describe StyleGuide::StyleController, type: :controller do
 
   before do
     FileUtils.mkdir_p(partial_path)
+  end
+
+  around do |example|
+    old_paths = StyleGuide::Engine.config.style_guide.paths
     StyleGuide::Engine.config.style_guide.paths = "#{temp_path}/*"
+    example.run
+    StyleGuide::Engine.config.style_guide.paths = old_paths
   end
 
   describe "#index" do

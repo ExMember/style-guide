@@ -109,9 +109,11 @@ describe StyleGuide::Partial do
   end
 
   describe "#render" do
-    let(:mock_view) { double(:view, :render => "hi") }
+    let(:mock_renderer) { double(ActionController::Renderer, :render => "hi") }
 
-    before { partial.stub(:action_view).and_return(mock_view) }
+    before do
+      allow(::ApplicationController).to receive(:renderer).and_return(mock_renderer)
+    end
 
     subject { partial.render }
 

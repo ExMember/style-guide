@@ -4,3 +4,4 @@ gemspec
 
 gem "guard"
 gem "rails-controller-testing"
+gem "capybara"
